@@ -1,0 +1,22 @@
+#!/bin/bash
+# minimal terminal stopwatch with big digits
+
+font="big"
+seconds=0
+
+while true; do
+    h=$((seconds/3600))
+    m=$(( (seconds/60)%60 ))
+    s=$(( seconds%60 ))
+    time=$(printf "%02d:%02d:%02d" $h $m $s)
+
+    clear
+
+    tput cup $(( $(tput lines)/2 - 3 )) 0
+
+    figlet -f "$font" "$time"
+
+    sleep 1
+    ((seconds++))
+done
+
